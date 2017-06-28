@@ -39,16 +39,13 @@ class fire {
       if(curMillis - lastUpdate >= rate){
         lastUpdate = curMillis;
         dirUp ? state++ : state--;
-        if(random(80) == 1){
+        if(random(80) == 1){ // a possible spark
           analogWrite(ledPin, 255);
         } else {
           analogWrite(ledPin, state);
         }
         if(state == high || state == low){
-          dirUp = !dirUp; // boolean logic flip using the NOT operator
-        }
-        if(random(100) == 50){
-          analogWrite(ledPin, high + 100);
+          dirUp = !dirUp; // boolean logic flip
         }
       }
     } 
