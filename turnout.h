@@ -84,21 +84,23 @@ public:
   }
 
   void update(unsigned long curMillis) {
-    if(is_moving && (curMillis - last_move) >= move_delay){
-      last_move = curMillis;
-      if (pos_now < target_pos) { // if the new position is higher
-          pos_now = min(pos_now + increment, target_pos);
-          setServo(pos_now);
-      } else {  // otherwise the new position is equal or lower
-          if (pos_now != target_pos) { // not already at destination
-            pos_now = max(pos_now - increment, target_pos);
+    if(is_moving){ 
+      if((curMillis - last_move) >= move_delay){
+        last_move = curMillis;
+        if (pos_now < target_pos) { // if the new position is higher
+            pos_now = min(pos_now + increment, target_pos);
             setServo(pos_now);
-          }
-      }
-      if (pos_now == target_pos) {
-        is_moving = false;
-        last_move = 0;
-        alignment = target_alignment;
+        } else {  // otherwise the new position is equal or lower
+            if (pos_now != target_pos) { // not already at destination
+              pos_now = max(pos_now - increment, target_pos);
+              setServo(pos_now);
+            }
+        }
+        if (pos_now == target_pos) {
+          is_moving = false;
+          last_move = 0;
+          alignment = target_alignment;
+        }
       }
     }
   }
