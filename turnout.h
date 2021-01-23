@@ -12,6 +12,10 @@
 //
 // Class declaration and implementation
 ///////////////////////////////////////
+#define ALIGN_NONE 0
+#define ALIGN_MAIN  1
+#define ALIGN_DIVERGENT 2
+
 typedef struct TURNOUT_PARAMS {
   int pin;
   int pos_main;
